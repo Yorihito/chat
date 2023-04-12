@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#submit").on("click", function(e) {
+                e.preventDefault();
+                const prompt = $("#prompt").val();
+                $.post("/", { prompt: prompt }, function(data) {
+                    $("#response").text(data);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>OpenAI Chat</h1>
+    <form>
+        <label for="prompt">Enter your prompt:</label><br>
+        <textarea id="prompt" name="prompt" rows="4" cols="50"></textarea><br><br>
+        <button id="submit">Submit</button>
+    </form>
+    <h2>Response:</h2>
+    <pre id="response"></pre>
+</body>
+</html>
