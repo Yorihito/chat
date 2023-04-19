@@ -2,19 +2,18 @@ import os
 import openai
 from flask import Flask, render_template, request, jsonify
 import requests
-#from azure.identity import DefaultAzureCredential
-#from azure.keyvault.secrets import SecretClient
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 
 app = Flask(__name__)
 
 # Replace with your Azure Key Vault URL
-#KEY_VAULT_URL = 'https://ytadaoakey.vault.azure.net/'
+KEY_VAULT_URL = 'https://ytadaoakey.vault.azure.net/'
 
 # Connect to Azure Key Vault and retrieve the API key
-#credential = DefaultAzureCredential()
-#secret_client = SecretClient(vault_url=KEY_VAULT_URL, credential=credential)
-#api_key = secret_client.get_secret('openaikey').value
-api_key = '9c3dc9eadc174f93b665dceaddca2f84'
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=KEY_VAULT_URL, credential=credential)
+api_key = secret_client.get_secret('openaikey').value
 
 openai.api_type = "azure"
 openai.api_base = "https://ytadaopenai.openai.azure.com/"
