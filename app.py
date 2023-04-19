@@ -47,7 +47,7 @@ def generate_text(msg):
         engine="gpt4",
         messages = msg,
         temperature=0.9,
-        max_tokens=800,
+#        max_tokens=800,
         frequency_penalty=0,
         presence_penalty=0,
         stop=None)
