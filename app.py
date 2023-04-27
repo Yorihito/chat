@@ -35,22 +35,23 @@ def reset_messages():
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
+        model = request.form['model']
         prompt = request.form['prompt']
         add_message(messages, "user", prompt)
-        response = generate_text(messages)
+        response = generate_text(messages, model)
         return jsonify(response)
     return render_template('index.html')
 
-def generate_text(msg):
+def generate_text(msg, model):
 
     response = openai.ChatCompletion.create(
-        engine="gpt4",
-        messages = msg,
+        engine=model,
+        messages=msg,
         temperature=0.9,
-#        max_tokens=800,
         frequency_penalty=0,
         presence_penalty=0,
-        stop=None)
+        stop=None
+    )
 
     if 'choices' in response and len(response['choices']) > 0:
         resp = response['choices'][0]['message']['content']
