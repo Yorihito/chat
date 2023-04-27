@@ -1,83 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Chat with AI</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background-color: #f5f5f5;
-            }
-            .container {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-                max-width: 90%;
-                width: 100%;
-            }
-            h1 {
-                margin: 0 0 20px;
-                text-align: center;
-            }
-            #response {
-                width: 100%;
-                padding: 10px;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-                height: 300px;
-                overflow-y: auto;
-                margin-bottom: 10px;
-            }
-            #model {
-                width: 10%;
-                padding: 10px;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-                margin-bottom: 10px;
-            }
-            #prompt {
-                width: 100%;
-                padding: 10px;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-                margin-bottom: 10px;
-            }
-            button {
-                background-color: #FF5800;
-                border: none;
-                color: white;
-                padding: 10px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 4px;
-            }
-            button[type="submit"] {
-                width: 100%;
-            }
-            #loading {
-                text-align: center;
-            }
-        </style>
-    </head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with AI</title>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
     <div class="container">
         <h1>Chat with AI</h1>
-        <p style="text-align: right;">powered by Azure OpenAI</p>
+        <p class="power-text">powered by Azure OpenAI</p>
         <div id="response"></div>
         <form id="chat-form">
             <label for="model">Choose a model:</label>
@@ -90,41 +23,8 @@
             <button type="submit">Send</button>
         </form>
         <button id="reset">Reset</button>
-        <div id="loading" style="display:none">Loading...</div>
+        <div id="loading" class="hidden">Loading...</div>
     </div>
-    <script>
-        document.getElementById('chat-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const model = document.getElementById('model');
-            const prompt = document.getElementById('prompt');
-            const responseDiv = document.getElementById('response');
-            const loadingDiv = document.getElementById('loading');
-
-            loadingDiv.style.display = 'block';
-
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ 'model': model.value, 'prompt': prompt.value })
-            });
-
-            const responseData = await response.json();
-            responseDiv.innerHTML += `<p><strong>You:</strong> ${prompt.value}</p>`;
-            responseDiv.innerHTML += `<p><strong>AI:</strong> ${responseData}</p>`;
-            loadingDiv.style.display = 'none';
-            prompt.value = '';
-        });
-
-        document.getElementById('reset').addEventListener('click', async () => {
-            const responseDiv = document.getElementById('response');
-            const loadingDiv = document.getElementById('loading');
-            loadingDiv.style.display = 'block';
-
-            await fetch('/reset', { method: 'POST' });
-
-            responseDiv.innerHTML = '';
-            loadingDiv.style.display = 'none';
-        });
-    </script>
+    <script src="../static/script.js"></script>
 </body>
 </html>

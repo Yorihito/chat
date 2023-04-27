@@ -1,3 +1,5 @@
+# how to deploy
+# az webapp up --name azopenaiyt --resource-group ytadachat --plan azopenaiytplan --sku F1 --location japaneast
 import os
 import openai
 from flask import Flask, render_template, request, jsonify

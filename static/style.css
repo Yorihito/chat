@@ -2,6 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
 }
 
 .container {
@@ -14,40 +19,34 @@ body {
 }
 
 h1 {
-    margin: 0;
-    font-size: 2rem;
+    margin: 0 0 20px;
     text-align: center;
 }
 
-p {
-    margin: 0;
-}
-
 #response {
-    margin: 20px 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
-    padding: 20px;
-    overflow-y: scroll;
-    max-height: 300px;
-}
-
-#chat-form {
-    display: flex;
-    margin-bottom: 20px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
 }
 
 #model {
-    flex: 1;
-    padding: 5px;
+    width: 100;
+    padding: 10px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
-    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 #prompt {
-    flex: 4;
-    padding: 5px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
-    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 button {
@@ -64,12 +63,18 @@ button {
     border-radius: 4px;
 }
 
-button:hover {
-    background-color: #45a049;
+button[type="submit"] {
+    width: 100%;
+}
+
+.power-text {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
 }
 
 #loading {
     text-align: center;
-    font-size: 1rem;
-    color: #888;
 }
